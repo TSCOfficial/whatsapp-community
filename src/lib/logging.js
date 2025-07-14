@@ -1,31 +1,33 @@
-
-/**
- * Create a log message to the console
- * @param {string} message 
- * @param {boolean} warn 
- * @param {boolean} error 
- */
-export function Log (message, warn, error) {
-    const date = new Date()
+export default function Log(message) {
+    const date = new Date();
     const time = {
-        day: date.getDate,
+        day: date.getDate(),
         month: date.getMonth() + 1,
         year: date.getFullYear(),
         hour: date.getHours(),
         minute: date.getMinutes(),
         second: date.getSeconds()
-    }
-    const logTimeContructor = `${time.day}.${time.month}.${time.year}`
+    };
+    const timestamp = `${time.day}.${time.month}.${time.year}`;
 
-    if (warn) {
-        console.warn(`${logTimeContructor} [WARN] ${message}`)
-    }
-    else if (error) {
-        console.error(`${logTimeContructor} [ERROR] ${message}`)
-    }
-    else {
-        console.log(`${logTimeContructor} [LOG] ${message}`)
-    }
+    const baseMessage = `${timestamp}`;
 
-    
+    const logger = {
+        warn() {
+            console.warn(`${baseMessage} [WARN] ${message}`);
+            return this;
+        },
+        error() {
+            console.error(`${baseMessage} [ERROR] ${message}`);
+            return this;
+        },
+        log() {
+            console.log(`${baseMessage} [LOG] ${message}`);
+            return this;
+        }
+    };
+
+    logger.log();
+
+    return logger;
 }
