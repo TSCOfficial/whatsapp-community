@@ -1,7 +1,7 @@
 // api/keepalive.js
 
-import Supabase from '@lib/supabase';
-import Log from '@lib/logging';
+import Supabase from './lib/supabase';
+import Log from './lib/logging';
 
 export const config = {
   schedule: '0 0 * * 0,3,5', // Sonntag, Mittwoch, Freitag um 00:00
