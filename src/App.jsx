@@ -6,7 +6,15 @@ import './App.css'
 function App() {
   return (
     <>
-      
+      <nav>
+
+      </nav>
+      <main>
+        <h1>Hallo community</h1>
+      </main>
+      <footer>
+
+      </footer>
     </>
   )
 }

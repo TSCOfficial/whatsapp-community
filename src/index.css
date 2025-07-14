@@ -1,9 +1,18 @@
 :root {
+  /* General settings */
   font-synthesis: weight style small-caps;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+
+  /* Specified color styles */
+  --main-background: var(--black-400);
+  --nav-background: var(--black-500);
+  --footer-background: var(--black-500);
+
+
+  /* Original color palette */
   --black-50: rgb(232, 232, 232);
   --black-100: rgb(183, 183, 183);
   --black-200: rgb(148, 148, 148);
