@@ -1,0 +1,6 @@
+{
+  "crons": [{
+    "path": "/lib/cron",
+    "schedule": "0 10 * * *"
+  }]
+}
