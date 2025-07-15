@@ -5,11 +5,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  /* Default values */
+  --default-vertical-padding: 8px;
+  --default-horizontal-padding: 16px;
 
   /* Specified color styles */
-  --main-background: var(--black-400);
-  --nav-background: var(--black-500);
-  --footer-background: var(--black-500);
+  --main-background: var(--black-500);
+  --nav-background: var(--black-700);
+  --footer-background: var(--black-700);
 
 
   /* Original color palette */
@@ -78,4 +81,8 @@
   --blue-700: rgb(0, 113, 181);
   --blue-800: rgb(0, 87, 140);
   --blue-900: rgb(0, 67, 107);
+}
+
+body {
+  margin: 0;
 }

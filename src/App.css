@@ -1,0 +1,29 @@
+#root {
+  display: grid;
+  grid-template-areas: 
+  "nav main"
+  "nav main"
+  "footer footer";
+  width: 100vw;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+
+main {
+    grid-area: main;
+    background-color: var(--main-background);
+    padding: 8px 16px;
+}
+
+nav {
+    grid-area: nav;
+    background-color: var(--nav-background);
+    padding: 8px 16px;
+}
+
+footer {
+    grid-area: footer;
+    background-color: var(--footer-background);
+    padding: 8px 16px;
+}
