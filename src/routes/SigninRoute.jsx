@@ -1,9 +1,20 @@
-import AuthForm from "../components/AuthForm";
+import SigninForm from "../components/SigninForm";
+import validateAuth from "../lib/validateAuth";
 
+async function clientAction({request}) {
+    const formData = await request.formData()
+    const user = Object-fromEntries(formData)
+
+    const {errors, isValid} = validateAuth(user)
+    if (!isValid) {
+        return errors // returns errors to form when pressing submit
+    }
+}
 export default function SigninRoute(){
     return (
         <>
-        <AuthForm/>
+        <h1>Anmelden</h1>
+        <SigninForm/>
         </>
     )
 }

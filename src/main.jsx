@@ -5,6 +5,7 @@ import './index.css'
 import App from './App.jsx'
 import HomeRoute from './routes/HomeRoute.jsx'
 import SigninRoute from './routes/SigninRoute.jsx';
+import SignupRoute from './routes/SignupRoute.jsx';
 
 const router = createBrowserRouter([
     {
@@ -16,8 +17,11 @@ const router = createBrowserRouter([
                 element: <HomeRoute/>
             },
             {
-              path: '/signin',
+              path: '/auth/signin',
               element: <SigninRoute/>
+            }, {
+              path: '/auth/signup',
+              element: <SignupRoute/>
             }
         ]
     }
