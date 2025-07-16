@@ -1,10 +1,10 @@
-import SigninForm from "../components/SigninForm";
+import SignupForm from "../components/SignupForm";
 
 export default function SigninRoute(){
     return (
         <>
         <h1>Registrieren</h1>
-        <SigninForm/>
+        <SignupForm/>
         </>
     )
 }

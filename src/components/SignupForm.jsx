@@ -2,10 +2,15 @@ import { Form } from "react-router";
 import LinkButton from "./LinkButton";
 import Button from "./Button";
 
-export default function SigninForm({errors = {}, onCancel}) {
+export default function SignupForm({errors = {}, onCancel}) {
     return (
         <Form method="post" noValidate>
             <fieldset>
+                <input
+                type="text"
+                name="username"
+                placeholder="Benutzername"
+                />
                 <input
                 type="email"
                 name="email"
@@ -17,9 +22,9 @@ export default function SigninForm({errors = {}, onCancel}) {
                 placeholder="Passwort"
                 />
             </fieldset>
-            <LinkButton to="/auth/signup">Noch kein Account?</LinkButton>
+            <LinkButton to="/auth/signin">bereits ein Account?</LinkButton>
 
-            <Button type="submit">Anmelden</Button>
+            <Button type="submit">Registrieren</Button>
             <Button onClick={onCancel}>Abbrechen</Button>
         </Form>
     )
