@@ -11,7 +11,7 @@ export default function Navigation() {
             
             {
                 user
-                ? <p>{user.email}</p>
+                ? <p>{user.user_metadata.display_name}</p>
                 : <LinkButton to="/auth/signin">Anmelden</LinkButton>
             }
         </nav>

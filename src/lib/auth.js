@@ -9,8 +9,10 @@ export async function signup(user){
     const {data, error} = await Supabase().auth.signUp({
         email: email,
         password: password,
-        user_metadata: {
-            username: username
+        options: {
+            data: {
+                display_name: username
+            }
         }
     })
     if (error) {
