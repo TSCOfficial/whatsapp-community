@@ -5,9 +5,9 @@ const STORAGE_KEY = "session"
 const SESSION_EVENT = "session-changed"
 const sessionAtom = atom(getSession())
 
-export function getJWTToken() {
+export function getToken() {
     const session = getSession()
-    return session?.jwt
+    return session?.access_token
 }
 
 export function getSession() {

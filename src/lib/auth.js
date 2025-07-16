@@ -1,4 +1,5 @@
 import Supabase from "../../lib/supabase"
+import Log from "../../lib/logging"
 
 export async function signup(user){
     const username = user.username
@@ -20,10 +21,10 @@ export async function signup(user){
     }
 }
 
-export async function signin(email, password){
+export async function signin(credentials){
     const {data, error} = await Supabase().auth.signInWithPassword({
-        email: email,
-        password: password
+        email: credentials.email,
+        password: credentials.password
     })
     if (error) {
         new Log(`Error creating user: ${error}`).error()

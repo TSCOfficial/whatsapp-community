@@ -2,6 +2,7 @@ import { signin } from "../lib/auth";
 import SigninForm from "../components/SigninForm";
 import validateAuth from "../lib/validateAuth";
 import { saveSession } from "../lib/session";
+import Log from "../../lib/logging"
 
 async function clientAction({request}) {
     const formData = await request.formData()
@@ -13,7 +14,8 @@ async function clientAction({request}) {
     }
 
     const response = await signin(user)
-    new Log(response)
+    saveSession(response.session)
+    console.log(response)
 }
 export default function SigninRoute(){
     return (
