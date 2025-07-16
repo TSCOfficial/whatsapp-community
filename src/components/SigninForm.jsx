@@ -8,11 +8,6 @@ export default function SigninForm({errors = {}, onCancel}) {
             <fieldset>
                 <input
                 type="text"
-                name="displayname"
-                placeholder="Anzeigename"
-                />
-                <input
-                type="text"
                 name="username"
                 placeholder="Benutzername"
                 />

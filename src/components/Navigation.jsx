@@ -6,7 +6,7 @@ export default function Navigation() {
     return (
         <nav className={styles.nav}>
             <Logo className={styles.image}/>
-            <LinkButton to="/signin">Anmelden</LinkButton>
+            <LinkButton to="/auth/signin">Anmelden</LinkButton>
         </nav>
     )
 }
