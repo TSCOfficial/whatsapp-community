@@ -1,24 +1,25 @@
 #root {
   display: grid;
   grid-template-areas: 
-  "nav main"
-  "nav main"
+  "nav nav"
+  "main main"
   "footer footer";
+  grid-template-rows: auto 1fr auto;
   width: 100vw;
   min-height: 100vh;
   box-sizing: border-box;
 }
 
+nav {
+    grid-area: nav;
+    background-color: var(--nav-background);
+    padding: 8px 16px;
+    min-height: 8vh;
+}
 
 main {
     grid-area: main;
     background-color: var(--main-background);
-    padding: 8px 16px;
-}
-
-nav {
-    grid-area: nav;
-    background-color: var(--nav-background);
     padding: 8px 16px;
 }
 

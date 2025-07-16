@@ -10,9 +10,16 @@
   --default-horizontal-padding: 16px;
 
   /* Specified color styles */
-  --main-background: var(--black-500);
   --nav-background: var(--black-700);
+  --on-nav: var(--white-100);
+
+  --main-background: var(--black-500);
+  --on-main: var(--white-200);
+
   --footer-background: var(--black-700);
+
+  --surface: var(--black-400);
+  --on-surface: var(--white-300);
 
 
   /* Original color palette */

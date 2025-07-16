@@ -1,13 +1,13 @@
 import './App.css'
+import {Outlet} from "react-router";
+import Navigation from './components/Navigation'
 
 function App() {
   return (
     <>
-      <nav>
-        test
-      </nav>
+      <Navigation></Navigation>
       <main>
-        <h1>Hallo community</h1>
+        <Outlet/>
       </main>
       <footer>
         moin
