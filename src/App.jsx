@@ -5,8 +5,8 @@ import Navigation from './components/Navigation'
 function App() {
   return (
     <>
-      <Navigation></Navigation>
       <main>
+        <Navigation></Navigation>
         <Outlet/>
       </main>
       <footer>

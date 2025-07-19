@@ -1,36 +1,54 @@
 import { Form } from "react-router";
 import LinkButton from "./LinkButton";
 import Button from "./Button";
+import Fieldset from "./Fieldset";
+import Field from "./Field";
+import { getAllProfiles } from "../lib/buckets";
+import {useEffect} from "react";
 
 export default function AuthForm({method, errors = {}, onCancel}) {
+    let profiles = [];
+
+    useEffect(() => {
+        profiles = getAllProfiles()
+    }, [])
+    
     return (
         <Form method="post" noValidate>
-            <fieldset>
+            <Fieldset>
                 {
                     method == "signup"
                     ? <>
-                    <input
-                        type="text"
-                        name="username"
-                        placeholder="Benutzername"
-                    />
-                    { errors.username && <p>{errors.username}</p>}
+                        {
+                            <p>
+                                {profiles}
+                            </p>
+                        }
+                        <Field
+                            type="text"
+                            name="username"
+                            placeholder="Benutzername"
+                            title="Benutzername"
+                            error={errors.username}
+                        />
                     </>
                     : null
                 }
-                <input
+                <Field
                 type="email"
                 name="email"
                 placeholder="E-Mail"
+                title="E-Mail"
+                error={errors.email}
                 />
-                { errors.email && <p>{errors.email}</p>}
-                <input
+                <Field
                 type="password"
                 name="password"
                 placeholder="Passwort"
+                title="Passwort"
+                error={errors.password}
                 />
-                { errors.password && <p>{errors.password}</p>}
-            </fieldset>
+            </Fieldset>
             {
                 method == "signup"
                 ? <>
