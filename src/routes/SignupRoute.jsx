@@ -1,7 +1,7 @@
-import SignupForm from "../components/SignupForm";
 import validateAuth from "../lib/validateAuth";
 import { saveSession } from "../lib/session";
 import { signup } from "../lib/auth";
+import AuthForm from "../components/AuthForm";
 
 async function clientAction({request}) {
     const formData = await request.formData()
@@ -21,7 +21,7 @@ export default function SignupRoute(){
     return (
         <>
         <h1>Registrieren</h1>
-        <SignupForm/>
+        <AuthForm method="signup"/>
         </>
     )
 }

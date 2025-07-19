@@ -1,8 +1,8 @@
 import { signin } from "../lib/auth";
-import SigninForm from "../components/SigninForm";
 import validateAuth from "../lib/validateAuth";
 import { saveSession } from "../lib/session";
 import Log from "../../lib/logging"
+import AuthForm from "../components/AuthForm";
 
 async function clientAction({request}) {
     const formData = await request.formData()
@@ -21,7 +21,7 @@ export default function SigninRoute(){
     return (
         <>
         <h1>Anmelden</h1>
-        <SigninForm/>
+        <AuthForm method="signin"/>
         </>
     )
 }
