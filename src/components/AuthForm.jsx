@@ -3,27 +3,43 @@ import LinkButton from "./LinkButton";
 import Button from "./Button";
 import Fieldset from "./Fieldset";
 import Field from "./Field";
-import { getAllProfiles } from "../lib/buckets";
-import {useEffect} from "react";
+import { getAllProfiles, getProfileUrl } from "../lib/buckets";
+import {useEffect, useState} from "react";
 
 export default function AuthForm({method, errors = {}, onCancel}) {
-    let profiles = [];
+    const [profileUrls, setProfileUrls] = useState([])
 
     useEffect(() => {
-        profiles = getAllProfiles()
+        const asyncFunc = async () => {
+            const profiles = await getAllProfiles()
+            profiles.map(async (profile) => {
+                console.log(profile)
+                const url = await getProfileUrl(profile.name)
+                setProfileUrls((prev) => [...prev, url.publicUrl])
+            })
+        }
+        asyncFunc()
+        
     }, [])
-    
+
     return (
         <Form method="post" noValidate>
             <Fieldset>
                 {
                     method == "signup"
                     ? <>
-                        {
-                            <p>
-                                {profiles}
-                            </p>
-                        }
+                        <p>{profileUrls}</p>
+                        <div>
+                            {
+                                profileUrls.map((url) => {
+                                    console.warn(url)
+                                    return (
+                                        <img src={url} alt="" key={url}/>
+                                    )   
+                                })
+                            }
+                        </div>
+                        
                         <Field
                             type="text"
                             name="username"
