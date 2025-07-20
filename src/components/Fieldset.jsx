@@ -1,4 +1,4 @@
-import styles from "./Fieldset.module.css"
+import styles from "../assets/Fieldset.module.css"
 
 export default function Fieldset({children, title}) {
     return (

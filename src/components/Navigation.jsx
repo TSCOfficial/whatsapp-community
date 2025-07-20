@@ -2,7 +2,7 @@ import Logo from "../assets/placeholder-logo.svg?react"
 import { getSession, useCurrentUser, removeSession } from "../lib/session"
 import Button from "./Button"
 import LinkButton from "./LinkButton"
-import styles from "./Navigation.module.css"
+import styles from "../assets/Navigation.module.css"
 
 export default function Navigation() {
     const user = useCurrentUser()

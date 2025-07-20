@@ -1,10 +1,12 @@
 import { getAllProfiles, getProfileUrl } from "../lib/buckets";
 import {useEffect, useState} from "react";
-import styles from "./ProfileSelect.module.css"
+import styles from "../assets/ProfileSelect.module.css"
+import Button from "./Button";
 
 export default function ProfileSelect() {
 
-    const [profileUrls, setProfileUrls] = useState([])
+    const [profileList, setProfileList] = useState([])
+    const [selected, setSelected] = useState("")
 
     useEffect(() => { // useEffect runs two times in dev mode! in prod mode it works fine
         const asyncFunc = async () => {
@@ -12,7 +14,7 @@ export default function ProfileSelect() {
             profiles.map(async (profile) => {
                 console.log(profile)
                 const url = await getProfileUrl(profile.name)
-                setProfileUrls((prev) => [...prev, url.publicUrl])
+                setProfileList((prev) => [...prev, {...profile, url: url.publicUrl}])
             })
         }
         asyncFunc()
@@ -23,10 +25,12 @@ export default function ProfileSelect() {
         <>
             <div>
                 {
-                    profileUrls.map((url) => {
-                        console.warn(url)
+                    profileList.map((profile) => {
+                        console.warn(profile)
                         return (
-                            <img src={url} alt="" key={url} className={styles.profile}/>
+                            <Button onClick={() => setSelected(profile.name)}>
+                                <img src={profile.url} alt="" key={profile.url} className={styles.profile}/>
+                            </Button>
                         )   
                     })
                 }
@@ -35,7 +39,7 @@ export default function ProfileSelect() {
             <input
                 type="text"
                 name="profile"
-                value="Hello"
+                value={selected}
                 hidden
             />
         </>
