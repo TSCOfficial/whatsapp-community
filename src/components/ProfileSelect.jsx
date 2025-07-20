@@ -13,13 +13,19 @@ export default function ProfileSelect() {
             const profiles = await getAllProfiles()
             profiles.map(async (profile) => {
                 console.log(profile)
-                const url = await getProfileUrl(profile.name)
-                setProfileList((prev) => [...prev, {...profile, url: url.publicUrl}])
+                    const url = await getProfileUrl(profile.name)
+                    setProfileList((prev) => [...prev, {...profile, url: url.publicUrl}])
             })
+            setSelected(profiles[0].name)
         }
         asyncFunc()
     
     }, [] )
+
+    const onClick = (e, name) => {
+        e.preventDefault()
+        setSelected(name)
+    }
 
     return (
         <>
@@ -28,8 +34,8 @@ export default function ProfileSelect() {
                     profileList.map((profile) => {
                         console.warn(profile)
                         return (
-                            <Button onClick={() => setSelected(profile.name)}>
-                                <img src={profile.url} alt="" key={profile.url} className={styles.profile}/>
+                            <Button onClick={(e) => onClick(e, profile.name)} key={profile.url}>
+                                <img src={profile.url} alt="" className={styles.profile}/>
                             </Button>
                         )   
                     })
@@ -40,7 +46,6 @@ export default function ProfileSelect() {
                 type="text"
                 name="profile"
                 value={selected}
-                hidden
             />
         </>
     )

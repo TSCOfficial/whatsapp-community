@@ -13,6 +13,11 @@ export default function validateAuth(user) {
 
     console.log(user)
 
+    if (user.profile?.trim().length === 0) {
+        errors.profile = "Profilbild ist ein Pflichtfeld"
+        isValid = false
+    }
+
     if (user.username?.trim().length === 0) {
         errors.username = "Anzeigenamen ist ein Pflichtfeld"
         isValid = false

@@ -18,7 +18,7 @@ async function clientAction({request}) {
     saveSession(response.session)
     const param = new URLSearchParams(location.search)
     const path = param.get("path")
-    return redirect(path == "/")
+    return redirect(path ?? "/")
 }
 
 export default function SigninRoute(){

@@ -9,6 +9,8 @@ async function clientAction({request}) {
     const formData = await request.formData()
     const user = Object.fromEntries(formData)
 
+    console.log(user)
+
     const {errors, isValid} = validateAuth(user)
     if (!isValid) {
         return errors // returns errors to form when pressing submit
@@ -19,7 +21,7 @@ async function clientAction({request}) {
     saveSession(response.session)
     const param = new URLSearchParams(location.search)
     const path = param.get("path")
-    return redirect(path == "/")
+    return redirect(path ?? "/")
 }
 
 export default function SignupRoute(){
