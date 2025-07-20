@@ -3,39 +3,15 @@ import LinkButton from "./LinkButton";
 import Button from "./Button";
 import Fieldset from "./Fieldset";
 import Field from "./Field";
-import { getAllProfiles, getProfileUrl } from "../lib/buckets";
-import {useEffect, useState} from "react";
+import ProfileSelect from "./ProfileSelect";
 
 export default function SignupForm({errors = {}, onCancel}) {
-    const [profileUrls, setProfileUrls] = useState([])
-
-    useEffect(() => { // useEffect runs two times in dev mode! in prod mode it works fine
-        const asyncFunc = async () => {
-            const profiles = await getAllProfiles()
-            profiles.map(async (profile) => {
-                console.log(profile)
-                const url = await getProfileUrl(profile.name)
-                setProfileUrls((prev) => [...prev, url.publicUrl])
-            })
-        }
-        asyncFunc()
     
-    }, [] )
-
     return (
         <Form method="post" noValidate>
             <Fieldset>
-                <div>
-                    {
-                        profileUrls.map((url) => {
-                            console.warn(url)
-                            return (
-                                <img src={url} alt="" key={url}/>
-                            )   
-                        })
-                    }
-                </div>
-                
+                <ProfileSelect/>
+                                
                 <Field
                     type="text"
                     name="username"
