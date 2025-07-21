@@ -4,7 +4,7 @@ export default function validateAuth(user) {
 
     let isValid = true
 
-    const regexEmail = ".*@.*"
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     console.log(user)
 
@@ -23,10 +23,11 @@ export default function validateAuth(user) {
         isValid = false
     }
 
-    if (user.email.trim().length === 0) {
+    console.log(user)
+    if (user.email?.trim().length === 0) {
         errors.email = "E-Mail ist ein Pflichtfeld"
         isValid = false
-    } else if (!user.email.trim().match(regexEmail)) {
+    } else if (user.email && !user.email.trim().match(regexEmail)) {
         errors.email = "E-Mail ist invalid"
         isValid = false
     }

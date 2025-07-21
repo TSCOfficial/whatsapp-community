@@ -45,7 +45,9 @@ export default function AccountForm({user, errors = {}, onCancel}) {
                 onChange={(e) => setEmail(e.value)}
                 value={email}
                 error={errors.email}
+                disabled
                 />
+                <p>E-Mail adresse kann nicht geändert werden.</p>
 
                 {
                     changePassword == true
