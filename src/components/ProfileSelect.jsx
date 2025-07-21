@@ -1,4 +1,4 @@
-import { getAllProfiles, getProfileUrl } from "../lib/buckets";
+import { getAllAvatars, getAvatarUrl } from "../lib/buckets";
 import {useEffect, useState} from "react";
 import styles from "../assets/ProfileSelect.module.css"
 import Button from "./Button";
@@ -10,21 +10,20 @@ export default function ProfileSelect() {
 
     useEffect(() => { // useEffect runs two times in dev mode! in prod mode it works fine
         const asyncFunc = async () => {
-            const profiles = await getAllProfiles()
+            const profiles = await getAllAvatars()
             profiles.map(async (profile) => {
-                console.log(profile)
-                    const url = await getProfileUrl(profile.name)
-                    setProfileList((prev) => [...prev, {...profile, url: url.publicUrl}])
+                const url = await getAvatarUrl(profile.name)
+                setProfileList((prev) => [...prev, {...profile, url: url.publicUrl}])
             })
-            setSelected(profiles[0].name)
+            setSelected(profiles[0].id)
         }
         asyncFunc()
     
     }, [] )
 
-    const onClick = (e, name) => {
+    const onClick = (e, id) => {
         e.preventDefault()
-        setSelected(name)
+        setSelected(id)
     }
 
     return (
@@ -34,7 +33,7 @@ export default function ProfileSelect() {
                     profileList.map((profile) => {
                         console.warn(profile)
                         return (
-                            <Button onClick={(e) => onClick(e, profile.name)} key={profile.url}>
+                            <Button onClick={(e) => onClick(e, profile.id)} key={profile.url}>
                                 <img src={profile.url} alt="" className={styles.profile}/>
                             </Button>
                         )   
@@ -44,7 +43,7 @@ export default function ProfileSelect() {
 
             <input
                 type="text"
-                name="profile"
+                name="avatar"
                 value={selected}
             />
         </>

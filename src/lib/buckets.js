@@ -1,28 +1,48 @@
 import Supabase from "../../lib/supabase"
 import Log from "../../lib/logging"
 
-export async function getAllProfiles() {
-    const {data, error} = await Supabase().storage.from("profilepictures").list()
+export async function getAllAvatars() {
+    const {data, error} = await Supabase().storage.from("avatars").list()
 
-    new Log("Data: ")
-    console.log(data)
     if (error) {
-            new Log(`Error fetching profilepictures: ${error}`).error()
-        } else {
-            new Log(`Successfully fetchted profilepictures: ${data}`)
-            return data;
-        }
+        new Log(`Error fetching avatars: `, error).error()
+        return
+    }
+
+    new Log(`Successfully fetchted avatars: `, data)
+    return data;
+
 }
 
-export async function getProfileUrl(name) {
-    const {data, error} = await Supabase().storage.from("profilepictures").getPublicUrl(name)
+export async function getAvatarById(id) {
+  const avatars = await getAllAvatars()
 
-    new Log("Data: ")
-    console.log(data)
+  const data = avatars.filter((avatar) => avatar.id == id)
+
+  if (data.length == 0) {
+    new Log(`Error fetching avatar: 0 length index`).error()
+    return
+  }
+
+  new Log(`Successfully fetchted avatar: `, data)
+  return data;
+}
+
+export async function getAvatarUrl(name) {
+    const {data, error} = await Supabase().storage.from("avatars").getPublicUrl(name)
+
     if (error) {
-            new Log(`Error fetching profilepictures: ${error}`).error()
-        } else {
-            new Log(`Successfully fetchted profilepictures: ${data}`)
-            return data;
-        }
+      new Log(`Error fetching avatar URL: `, error).error()
+      return
+    }
+
+    new Log(`Successfully fetchted avatar URL: `, data)
+    return data;
+        
+}
+
+export async function getAvatarUrlById(id) {
+  const avatar = await getAvatarById(id)
+  const url = getAvatarUrl(avatar[0].name)
+  return url
 }
