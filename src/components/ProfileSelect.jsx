@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import styles from "../assets/ProfileSelect.module.css"
 import Button from "./Button";
 
-export default function ProfileSelect() {
+export default function ProfileSelect({preSelected}) {
 
     const [profileList, setProfileList] = useState([])
     const [selected, setSelected] = useState("")
@@ -15,7 +15,12 @@ export default function ProfileSelect() {
                 const url = await getAvatarUrl(profile.name)
                 setProfileList((prev) => [...prev, {...profile, url: url.publicUrl}])
             })
-            setSelected(profiles[0].id)
+            if (preSelected && preSelected !== "") {
+                setSelected(preSelected)
+            } else {
+                setSelected(profiles[0].id)
+            }
+            
         }
         asyncFunc()
     
@@ -33,7 +38,7 @@ export default function ProfileSelect() {
                     profileList.map((profile) => {
                         console.warn(profile)
                         return (
-                            <Button onClick={(e) => onClick(e, profile.id)} key={profile.url}>
+                            <Button onClick={(e) => onClick(e, profile.id)} key={profile.url} id={selected == profile.id ? styles.activeAvatar : null}>
                                 <img src={profile.url} alt="" className={styles.profile}/>
                             </Button>
                         )   

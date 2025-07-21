@@ -2,3 +2,7 @@
     width: 80px;
     aspect-ratio: 1/1;
 }
+
+#activeAvatar {
+    background: red;
+}

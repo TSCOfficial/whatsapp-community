@@ -1,0 +1,11 @@
+.noAvatar {
+    width: 40px;
+    height: 40px;
+    background-color: var(--on-nav);
+    border-radius: 9999px;
+}
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+}

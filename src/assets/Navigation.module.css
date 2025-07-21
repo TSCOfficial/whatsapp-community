@@ -8,9 +8,3 @@
 .logo {
     color: var(--on-nav);
 }
-
-.userAvatar {
-    width: 40px;
-    aspect-ratio: 1/1;
-    border-radius: 9999px;
-}

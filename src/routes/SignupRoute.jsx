@@ -2,7 +2,7 @@ import validateAuth from "../lib/validateAuth";
 import { saveSession } from "../lib/session";
 import { signup } from "../lib/auth";
 import { redirect, useNavigate, useActionData } from "react-router";
-import SignupForm from "../components/SignupForm";
+import AuthForm from "../components/AuthForm";
 
 
 async function clientAction({request}) {
@@ -35,7 +35,7 @@ export default function SignupRoute(){
     return (
         <>
         <h1>Registrieren</h1>
-        <SignupForm onCancel={onCancel} errors={errors}/>
+        <AuthForm method="signup" onCancel={onCancel} errors={errors}/>
         </>
     )
 }

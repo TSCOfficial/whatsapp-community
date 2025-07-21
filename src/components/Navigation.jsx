@@ -4,22 +4,13 @@ import Button from "./Button"
 import LinkButton from "./LinkButton"
 import styles from "../assets/Navigation.module.css"
 import { useNavigate } from "react-router"
-import { getAvatarById, getAvatarUrl, getAvatarUrlById } from "../lib/buckets"
 import { useEffect, useState } from "react"
+import Avatar from "./Avatar"
 
 export default function Navigation() {
-    const [avatarUrl, setAvatarUrl] = useState("")
     const navigate = useNavigate()
     const user = useCurrentUser()
     
-    useEffect(() => {
-        const fetchAvatarUrl = async () => {
-            const avatar_url = await getAvatarUrlById(user.avatar_id)
-            setAvatarUrl(avatar_url.publicUrl)
-        }
-
-        fetchAvatarUrl()
-    })
 
     const logout = async (e) => {
         e.preventDefault()
@@ -34,7 +25,7 @@ export default function Navigation() {
             {
                 user
                 ? <div>
-                    <img className={styles.userAvatar} src={avatarUrl} alt="" />
+                    <Avatar/>
                     <p>{user.user_metadata.display_name}</p>
                     <Button onClick={logout}>Logout</Button>
                 

@@ -48,6 +48,7 @@ export async function signin(credentials){
 
     if (authError) {
         new Log(`Signin error: `, authError).error()
+        return
     }
 
     console.log(authData)
@@ -58,14 +59,29 @@ export async function signin(credentials){
 
     if (publicError) {
         new Log(`Signin error, avatar fetch failed: `, publicError).error()
+        return
     }
-
-    const avatar = await getAvatarById(publicData[0].avatar_id)
-    new Log("Fetched avatar: ", avatar)
 
     authData.user.avatar_id = publicData[0].avatar_id // Adds avatar_id field to user session data (saved in browser session)
         
     new Log(`Signin successful: `, authData)
     return authData;
-    
+}
+
+export async function updateAccount(user) {
+    const {data, error} = await Supabase().auth.updateUser({
+        email: user.email,
+        data: {
+            display_name: user.username
+        }
+        
+    })
+
+    if (error) {
+        new Log(`Account update error: `, error).error()
+        return
+    }
+
+    new Log(`Account update successful: `, data)
+    return data;
 }

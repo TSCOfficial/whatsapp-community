@@ -6,6 +6,7 @@ import App from './App.jsx'
 import HomeRoute from './routes/HomeRoute.jsx'
 import SigninRoute from './routes/SigninRoute.jsx';
 import SignupRoute from './routes/SignupRoute.jsx';
+import EditAccountRoute from './routes/EditAccountRoute.jsx';
 
 const router = createBrowserRouter([
     {
@@ -20,10 +21,16 @@ const router = createBrowserRouter([
               path: '/auth/signin',
               element: <SigninRoute/>,
               action: SigninRoute.action
-            }, {
+            },
+            {
               path: '/auth/signup',
               element: <SignupRoute/>,
               action: SignupRoute.action
+            },
+            {
+              path: '/auth/update',
+              element: <EditAccountRoute/>,
+              action: EditAccountRoute.action
             }
         ]
     }

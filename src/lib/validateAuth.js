@@ -1,11 +1,6 @@
 export default function validateAuth(user) {
 
-    const errors = {
-        displayname: "",
-        username: "",
-        email: "",
-        password: "",
-    }
+    const errors = {}
 
     let isValid = true
 
@@ -40,6 +35,12 @@ export default function validateAuth(user) {
         errors.password = "Das Passwort muss mindestens 8 zeichen enthalten"
         isValid = false
     }
+
+    if (user.passwordConfirmation?.trim().length === 0) {
+        errors.passwordConfirmation = "Das Passwort muss bestätigt werden"
+        isValid = false
+    }
+    
 
     return { errors, isValid }
 }
