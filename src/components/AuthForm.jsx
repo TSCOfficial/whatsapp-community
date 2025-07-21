@@ -24,7 +24,7 @@ export default function AuthForm({method = "signin", user, errors = {}, onCancel
         <Form method="post" noValidate>
             <Fieldset>
                 {
-                    method == "signup" || method == "update"
+                    method == "signup"
                     ? <>
                         <ProfileSelect preSelected={avatarId}/>
                                 
@@ -62,7 +62,7 @@ export default function AuthForm({method = "signin", user, errors = {}, onCancel
                 />
 
                 {
-                    method == "signup" || method == "update"
+                    method == "signup"
                     ? <Field
                         type="password"
                         name="passwordConfirmation"
@@ -77,23 +77,18 @@ export default function AuthForm({method = "signin", user, errors = {}, onCancel
             </Fieldset>
 
             {
+                errors.responseError && <p>{errors.responseError}</p>
+            }
+
+            {
                 method == "signup"
-                && <>
+                ? <>
                     <LinkButton to="/auth/signin">Bereits ein Account?</LinkButton>
                     <Button type="submit">Registrieren</Button>
                 </>
-            } {
-
-                method == "signin"
-                && <>
+                : <>
                     <LinkButton to="/auth/signup">Noch kein Account?</LinkButton>
-                    <Button type="submit">Registrieren</Button>
-                </>
-            } {
-
-                method == "update"
-                && <>
-                    <Button type="submit">Aktualisieren</Button>
+                    <Button type="submit">Anmelden</Button>
                 </>
             }
            

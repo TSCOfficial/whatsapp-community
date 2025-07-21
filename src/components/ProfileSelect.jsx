@@ -15,7 +15,8 @@ export default function ProfileSelect({preSelected}) {
                 const url = await getAvatarUrl(profile.name)
                 setProfileList((prev) => [...prev, {...profile, url: url.publicUrl}])
             })
-            if (preSelected && preSelected !== "") {
+            console.log(preSelected)
+            if (preSelected) {
                 setSelected(preSelected)
             } else {
                 setSelected(profiles[0].id)

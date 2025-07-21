@@ -8,7 +8,7 @@ export default function validateAuth(user) {
 
     console.log(user)
 
-    if (user.profile?.trim().length === 0) {
+    if (user.avatar?.length === 0) {
         errors.profile = "Profilbild ist ein Pflichtfeld"
         isValid = false
     }
@@ -31,7 +31,7 @@ export default function validateAuth(user) {
         isValid = false
     }
 
-    if (user.password.length < 8) {
+    if (user.password?.trim().length < 8) {
         errors.password = "Das Passwort muss mindestens 8 zeichen enthalten"
         isValid = false
     }

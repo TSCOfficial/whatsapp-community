@@ -3,7 +3,7 @@ import validateAuth from "../lib/validateAuth";
 import { removeSession, saveSession, useCurrentUser } from "../lib/session";
 import Log from "../../lib/logging"
 import { redirect, useNavigate, useActionData } from "react-router";
-import AuthForm from "../components/AuthForm";
+import AccountForm from "../components/AcountForm";
 
 async function clientAction({request}) {
     const formData = await request.formData()
@@ -12,16 +12,21 @@ async function clientAction({request}) {
     new Log("update action data (user): ", user)
     new Log("user password: ", user.password)
 
-    const {errors, isValid} = validateAuth(user)
+    const { errors, isValid } = validateAuth(user)
     if (!isValid) {
         return errors // returns errors to form when pressing submit
     }
     new Log("update user: ", user)
-    const response = await updateAccount(user)
-    new Log("response from update: ", response)
-    const param = new URLSearchParams(location.search)
-    const path = param.get("path")
-    return redirect(path ?? "/")
+    const { data, error } = await updateAccount(user)
+
+    if (data) {
+        new Log("response from update: ", data)
+        
+        const param = new URLSearchParams(location.search)
+        const path = param.get("path")
+        return redirect(path ?? "/")
+    }
+    return { responseError: error }
 }
 
 // This route is not definitive and may be removed in the future.
@@ -39,7 +44,7 @@ export default function EditAccountRoute(){
     return (
         <>
         <h1>Aktualisieren</h1>
-        <AuthForm method="update" user={user} onCancel={onCancel} errors={errors}/>
+        <AccountForm user={user} onCancel={onCancel} errors={errors}/>
         </>
     )
 }

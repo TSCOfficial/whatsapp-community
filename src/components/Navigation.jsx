@@ -3,7 +3,7 @@ import { getSession, useCurrentUser, removeSession } from "../lib/session"
 import Button from "./Button"
 import LinkButton from "./LinkButton"
 import styles from "../assets/Navigation.module.css"
-import { useNavigate } from "react-router"
+import { Link, useNavigate } from "react-router"
 import { useEffect, useState } from "react"
 import Avatar from "./Avatar"
 
@@ -27,7 +27,8 @@ export default function Navigation() {
                 ? <div>
                     <Avatar/>
                     <p>{user.user_metadata.display_name}</p>
-                    <Button onClick={logout}>Logout</Button>
+                    <LinkButton to="/auth/update">Aktualisieren</LinkButton>
+                    <Button onClick={logout}>Abmelden</Button>
                 
                 </div>
                 : <LinkButton to="/auth/signin">Anmelden</LinkButton>
