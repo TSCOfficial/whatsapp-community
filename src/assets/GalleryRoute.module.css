@@ -1,12 +1,33 @@
-#gallery {
-  column-count: 2; /* oder responsive mit media queries */
-  column-gap: 16px;
-  margin: 0 15vw;
+/* GalleryRoute.module.css */
+
+.masonry {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 0 24vw;
 }
 
-#gallery img {
+/* alle Bilder stehen in der richtigen "Spalte" durch order, aber: */
+.masonry .column {
+  width: auto; /* für 2 Spalten, passe bei Bedarf an */
+  box-sizing: border-box;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
+
+.masonry .item {
+  background-color: var(--black-400);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.masonry img {
   width: 100%;
+  height: auto;
   display: block;
-  margin-bottom: 16px;
-  break-inside: avoid; /* verhindert Bild-Zerreißen */
+  border-radius: 8px;
+  object-fit: cover;
 }
