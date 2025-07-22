@@ -1,4 +1,4 @@
-import { getAllAvatars, getAvatarUrl } from "../lib/buckets";
+import { getAllAvatars, getAvatarUrl } from "../lib/buckets/avatars";
 import {useEffect, useState} from "react";
 import styles from "../assets/ProfileSelect.module.css"
 import Button from "./Button";
@@ -35,10 +35,9 @@ export default function ProfileSelect({preSelected}) {
         <>
             <div>
                 {
-                    profileList.map((profile) => {
-                        console.warn(profile)
+                    profileList.map((profile, i) => {
                         return (
-                            <Button onClick={(e) => onClick(e, profile.id)} key={profile.url} id={selected == profile.id ? styles.activeAvatar : null}>
+                            <Button onClick={(e) => onClick(e, profile.id)} key={i} id={selected == profile.id ? styles.activeAvatar : null}>
                                 <img src={profile.url} alt="" className={styles.profile}/>
                             </Button>
                         )   

@@ -1,8 +1,10 @@
-import Supabase from "../../lib/supabase"
-import Log from "../../lib/logging"
+import Supabase from "../../../lib/supabase"
+import Log from "../../../lib/logging"
+
+const BUCKET_NAME = "avatars"
 
 export async function getAllAvatars() {
-    const {data, error} = await Supabase().storage.from("avatars").list()
+    const {data, error} = await Supabase().storage.from(BUCKET_NAME).list()
 
     if (error) {
         new Log(`Error fetching avatars: `, error).error()
@@ -29,7 +31,7 @@ export async function getAvatarById(id) {
 }
 
 export async function getAvatarUrl(name) {
-    const {data, error} = await Supabase().storage.from("avatars").getPublicUrl(name)
+    const {data, error} = await Supabase().storage.from(BUCKET_NAME).getPublicUrl(name)
 
     if (error) {
       new Log(`Error fetching avatar URL: `, error).error()

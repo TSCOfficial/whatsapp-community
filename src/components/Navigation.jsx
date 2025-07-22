@@ -21,6 +21,8 @@ export default function Navigation() {
     return (
         <nav className={styles.nav}>
             <Logo className={styles.logo}/>
+
+            <LinkButton to="/gallery">Galerie</LinkButton>
             
             {
                 user

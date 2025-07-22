@@ -1,0 +1,12 @@
+#gallery {
+  column-count: 2; /* oder responsive mit media queries */
+  column-gap: 16px;
+  margin: 0 15vw;
+}
+
+#gallery img {
+  width: 100%;
+  display: block;
+  margin-bottom: 16px;
+  break-inside: avoid; /* verhindert Bild-Zerreißen */
+}

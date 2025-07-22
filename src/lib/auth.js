@@ -1,6 +1,6 @@
 import Supabase from "../../lib/supabase"
 import Log from "../../lib/logging"
-import { getAvatarById } from "./buckets"
+import { getAvatarById } from "./buckets/avatars"
 import { Response } from "./response"
 import { getSession, removeSession, saveSession } from "./session"
 

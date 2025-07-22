@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAvatarUrl, getAvatarUrlById } from "../lib/buckets";
+import { getAvatarUrl, getAvatarUrlById } from "../lib/buckets/avatars";
 import { useCurrentUser } from "../lib/session";
 import styles from "../assets/Avatar.module.css"
 

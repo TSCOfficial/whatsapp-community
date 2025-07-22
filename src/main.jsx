@@ -7,6 +7,7 @@ import HomeRoute from './routes/HomeRoute.jsx'
 import SigninRoute from './routes/SigninRoute.jsx';
 import SignupRoute from './routes/SignupRoute.jsx';
 import EditAccountRoute from './routes/EditAccountRoute.jsx';
+import GalleryRoute from './routes/GalleryRoute.jsx'
 
 const router = createBrowserRouter([
     {
@@ -17,20 +18,26 @@ const router = createBrowserRouter([
                 index: true,
                 element: <HomeRoute/>
             },
+            // Auth / Account
             {
-              path: '/auth/signin',
+              path: "/auth/signin",
               element: <SigninRoute/>,
               action: SigninRoute.action
             },
             {
-              path: '/auth/signup',
+              path: "/auth/signup",
               element: <SignupRoute/>,
               action: SignupRoute.action
             },
             {
-              path: '/auth/update',
+              path: "/auth/update",
               element: <EditAccountRoute/>,
               action: EditAccountRoute.action
+            },
+            // Gallery
+            {
+              path: "/gallery",
+              element: <GalleryRoute/>
             }
         ]
     }
