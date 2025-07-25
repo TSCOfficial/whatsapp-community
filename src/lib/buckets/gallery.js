@@ -3,6 +3,9 @@ import Log from "../../../lib/logging"
 
 const BUCKET_NAME = "gallery"
 
+//
+// GET
+//
 export async function getAllPictures() {
     const {data, error} = await Supabase().storage.from(BUCKET_NAME).list(null, {
         sortBy: { column: "created_at", order: "desc"}
@@ -10,7 +13,7 @@ export async function getAllPictures() {
 
     if (error) {
         new Log(`Error fetching pictures: `, error).error()
-        return
+        return error
     }
 
     new Log(`Successfully fetchted pictures: `, data)
@@ -25,7 +28,7 @@ export async function getPictureById(id) {
 
   if (data.length == 0) {
     new Log(`Error fetching picture: 0 length index`).error()
-    return
+    return error
   }
 
   new Log(`Successfully fetchted picture: `, data)
@@ -37,7 +40,7 @@ export async function getPictureUrl(name) {
 
     if (error) {
       new Log(`Error fetching picture URL: `, error).error()
-      return
+      return error
     }
 
     new Log(`Successfully fetchted picture URL: `, data)
@@ -49,4 +52,21 @@ export async function getPictureUrlById(id) {
   const picture = await getPictureById(id)
   const url = getPictureUrl(picture[0].name)
   return url
+}
+
+//
+// POST
+//
+export async function upload(picture) {
+  console.log(picture)
+  console.log("Picturename: ", picture.name)
+  const { data, error } = await Supabase().storage.from(BUCKET_NAME).upload(picture.name, picture) // error: picture.name is undefined
+  console.log(data, error)
+  if (error) {
+    new Log(`Error uploading picture: `, error).error()
+    return error
+  }
+
+  new Log(`Successfully uploaded picture: `, data)
+  return data;
 }
