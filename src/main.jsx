@@ -8,7 +8,7 @@ import SigninRoute from './routes/SigninRoute.jsx';
 import SignupRoute from './routes/SignupRoute.jsx';
 import EditAccountRoute from './routes/EditAccountRoute.jsx';
 import GalleryRoute from './routes/GalleryRoute.jsx'
-import GalleryAddRoute from './routes/GalleryAddRoute.jsx';
+import AddGalleryRoute from './routes/AddGalleryRoute.jsx';
 
 const router = createBrowserRouter([
     {
@@ -42,7 +42,7 @@ const router = createBrowserRouter([
             },
             {
               path: "/gallery/add",
-              element: <GalleryAddRoute/>
+              element: <AddGalleryRoute/>
             }
         ]
     }
