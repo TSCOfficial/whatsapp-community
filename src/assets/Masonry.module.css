@@ -1,0 +1,31 @@
+.masonry {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 0 24vw;
+  }
+  
+  /* alle Bilder stehen in der richtigen "Spalte" durch order, aber: */
+  .masonry .column {
+    width: auto; /* für 2 Spalten, passe bei Bedarf an */
+    box-sizing: border-box;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+  }
+  
+  .masonry .item {
+    background-color: var(--black-400);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .masonry img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    object-fit: cover;
+  }
