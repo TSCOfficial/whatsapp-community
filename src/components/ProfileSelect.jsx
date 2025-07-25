@@ -11,19 +11,31 @@ export default function ProfileSelect({preSelected}) {
     useEffect(() => { // useEffect can run multiple times in dev mode! in production mode it works fine
         const asyncFunc = async () => {
             const profiles = await getAllAvatars()
-            profiles.map(async (profile) => {
-                const url = await getAvatarUrl(profile.name)
-                setProfileList((prev) => [...prev, {...profile, url: url.publicUrl}])
-            })            
+
+            const profilesWithUrl = await Promise.all(
+                profiles.map(async (profile) => {
+                    const url = await getAvatarUrl(profile.name)
+                    return {
+                        ...profile,
+                        url: url.publicUrl
+                    }
+                
+                })    
+            )
+
+            setProfileList(profilesWithUrl)
+                 
         }
         asyncFunc()
 
+        
+
         if (preSelected && preSelected !== "") {
-                setSelected(preSelected)
-            } else {
-                setSelected(profileList[0]?.id)
-            }
-    
+            setSelected(preSelected)
+        } else {
+            setSelected(profileList[0]?.id)
+        }
+
     }, [preSelected] )
 
     const onClick = (e, id) => {

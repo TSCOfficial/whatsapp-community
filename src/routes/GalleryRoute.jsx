@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { getAllPictures, getPictureUrl } from "../lib/buckets/gallery"
-import Masonry from '@mui/lab/Masonry';
 import styles from "../assets/GalleryRoute.module.css"
 
 export default function Gallery() {
