@@ -3,10 +3,6 @@
 import Supabase from '../lib/supabase.js';
 import Log from '../lib/logging.js';
 
-export const config = {
-  schedule: '0 0 * * 0,3,5', // Sonntag, Mittwoch, Freitag um 00:00
-};
-
 /**
  * The handler is automaticly recognized by vercel als a Serverless function through the /api directory
  * @param {*} req 
