@@ -11,7 +11,7 @@ async function clientAction({request}) {
 
     const { errors, isValid } = validateAuth(user)
     if (!isValid) {
-        return { errors: errors }
+        return errors
     }
 
     const { data, error } = await signin(user)

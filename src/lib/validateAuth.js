@@ -23,7 +23,6 @@ export default function validateAuth(user) {
         isValid = false
     }
 
-    console.log(user)
     if (user.email?.trim().length === 0) {
         errors.email = "E-Mail ist ein Pflichtfeld"
         isValid = false
@@ -39,6 +38,11 @@ export default function validateAuth(user) {
 
     if (user.passwordConfirmation?.trim().length === 0) {
         errors.passwordConfirmation = "Das Passwort muss bestätigt werden"
+        isValid = false
+    }
+
+    if (user.password && user.passwordConfirmation && (user.password.trim() !== user.passwordConfirmation.trim())) {
+        errors.passwordConfirmation = "Das Passwort stimmt nicht übereinstimmen"
         isValid = false
     }
     

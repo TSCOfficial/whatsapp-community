@@ -4,8 +4,10 @@ import styles from "../assets/GalleryRoute.module.css"
 import Masonry from "../components/Masonry"
 import Button from "../components/Button"
 import LinkButton from "../components/LinkButton"
+import {useCurrentUser} from "../lib/session.js";
 
 export default function Gallery() {
+    const user = useCurrentUser()
     const [pictureList, setPictureList] = useState([])
     
 
@@ -25,7 +27,10 @@ export default function Gallery() {
 
     return (
         <>
-            <LinkButton to="/gallery/add">Add picture</LinkButton>
+            {
+                user && <LinkButton to="/gallery/add">Add picture</LinkButton>
+            }
+
             <Masonry pictures={pictureList}/>
         </>
   )

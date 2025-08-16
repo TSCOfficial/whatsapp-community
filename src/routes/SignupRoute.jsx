@@ -13,7 +13,7 @@ async function clientAction({request}) {
 
     const {errors, isValid} = validateAuth(user)
     if (!isValid) {
-        return { errors: errors } // returns errors to form when pressing submit
+        return errors // returns errors to form when pressing submit
     }
 
     const {data, error} = await signup(user)
