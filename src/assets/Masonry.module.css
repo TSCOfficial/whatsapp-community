@@ -7,25 +7,25 @@
   }
   
   /* alle Bilder stehen in der richtigen "Spalte" durch order, aber: */
-  .masonry .column {
-    width: auto; /* für 2 Spalten, passe bei Bedarf an */
+.masonry .column {
+    width: 100%; /* für 2 Spalten, passe bei Bedarf an */
     box-sizing: border-box;
     display: flex;
     gap: 16px;
     flex-direction: column;
-  }
+}
   
-  .masonry .item {
+.masonry .item {
     background-color: var(--black-400);
     display: flex;
     align-items: center;
     flex-direction: column;
-  }
+}
   
-  .masonry img {
+.masonry img {
     width: 100%;
     height: auto;
     display: block;
     border-radius: 8px;
     object-fit: cover;
-  }
+}

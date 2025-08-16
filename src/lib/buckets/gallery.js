@@ -59,7 +59,7 @@ export async function getPictureUrlById(id) {
 //
 export async function upload(picture) {
   console.log(picture)
-  console.log("Picturename: ", picture.name)
+  console.log("Picturename: ", picture)
   const { data, error } = await Supabase().storage.from(BUCKET_NAME).upload(picture.name, picture) // error: picture.name is undefined
   console.log(data, error)
   if (error) {

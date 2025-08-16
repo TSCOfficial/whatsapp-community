@@ -42,8 +42,7 @@ const router = createBrowserRouter([
             },
             {
               path: "/gallery/add",
-              element: <AddGalleryRoute/>,
-              action: AddGalleryRoute.action
+              element: <AddGalleryRoute/>
             }
         ]
     }
