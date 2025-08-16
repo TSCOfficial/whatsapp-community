@@ -22,7 +22,11 @@ export default function Navigation() {
         <nav className={styles.nav}>
             <Logo className={styles.logo}/>
 
-            <LinkButton to="/gallery">Galerie</LinkButton>
+            <ul>
+                <li><LinkButton to="/">Home</LinkButton></li>
+                <li><LinkButton to="/gallery">Galerie</LinkButton></li>
+            </ul>
+
             
             {
                 user
