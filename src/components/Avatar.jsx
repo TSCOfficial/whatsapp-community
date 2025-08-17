@@ -1,16 +1,30 @@
 import { useState, useEffect } from "react";
-import { getAvatarUrl, getAvatarUrlById } from "../lib/buckets/avatars";
+import {getAvatarById, getAvatarUrl, getAvatarUrlById} from "../lib/buckets/avatars";
 import { useCurrentUser } from "../lib/session";
 import styles from "../assets/Avatar.module.css"
+import {getUserById} from "../lib/auth.js";
 
-export default function Avatar({url, name, id}) {
+/**
+ * Fetch the avatar via a users id, the avatar url, the avatar name or the avatar id
+ * @param userId User ID
+ * @param url Avatar URL
+ * @param name Avatar name
+ * @param id Avatar ID
+ * @returns {JSX.Element}
+ * @constructor
+ */
+export default function Avatar({userId, url, name, id}) {
     const [avatarUrl, setAvatarUrl] = useState()
-    const user = useCurrentUser()
+    const currentUser = useCurrentUser()
 
         useEffect(() => {
         const fetchAvatar = async () => {
             if (url) {
                 setAvatarUrl(url)
+            } else if (userId) {
+                const user = await getUserById(userId)
+                const avatar_url = getAvatarById(user.avatar_id)
+                setAvatarUrl(avatar_url)
             } else if (name) {
                 const avatar_url = getAvatarUrl(name)
                 setAvatarUrl(avatar_url)
@@ -18,7 +32,7 @@ export default function Avatar({url, name, id}) {
                 const avatar_url = await getAvatarUrlById(id)
                 setAvatarUrl(avatar_url)
             } else {
-                const avatar_url = await getAvatarUrlById(user.avatar_id)
+                const avatar_url = await getAvatarUrlById(currentUser.avatar_id)
                 setAvatarUrl(avatar_url)
             }
         }

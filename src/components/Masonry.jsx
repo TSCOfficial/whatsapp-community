@@ -1,4 +1,5 @@
 import styles from "../assets/Masonry.module.css"
+import Avatar from "./Avatar.jsx";
 
 export default function Masonry({columns = 2, pictures}) {
     const columnData = Array.from({ length: columns }, () => [])
@@ -17,7 +18,10 @@ export default function Masonry({columns = 2, pictures}) {
                                 <img src={picture.url} alt={picture.name} />
                                 {
                                     picture.display_name
-                                    ? <p>{picture.display_name}</p>
+                                        ? <div>
+                                            <Avatar userId={picture.owner}></Avatar>
+                                            <p>{picture.display_name}</p>
+                                        </div>
                                         : <p>Anonym</p>
                                 }
 
