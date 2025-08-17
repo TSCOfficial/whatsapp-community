@@ -52,11 +52,9 @@ export async function getPictureUrlById(id) {
 //
 // POST
 //
-export async function upload(picture) {
-    console.log(picture)
-    console.log("Picturename: ", picture.name)
-    const { data, error } = await Supabase().storage.from(BUCKET_NAME).upload(picture.name, picture)
-    console.log(data, error)
+export async function upload(name, picture) {
+    console.log(name, picture);
+    const { data, error } = await Supabase().storage.from(BUCKET_NAME).upload(name, picture)
 
     if (error) {
         new Log(`Error uploading picture: `, error).error()
