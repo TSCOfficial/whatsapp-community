@@ -22,8 +22,10 @@ export default function Avatar({userId, url, name, id}) {
             if (url) {
                 setAvatarUrl(url)
             } else if (userId) {
+                console.log("chck user with id: ", userId)
                 const user = await getUserById(userId)
-                const avatar_url = getAvatarById(user.avatar_id)
+                console.log(user[0])
+                const avatar_url = getAvatarUrl(user[0].avatar_name)
                 setAvatarUrl(avatar_url)
             } else if (name) {
                 const avatar_url = getAvatarUrl(name)

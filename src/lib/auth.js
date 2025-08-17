@@ -115,25 +115,13 @@ export async function updateAccount(user) {
 }
 
 export async function getUserById(userId) {
-    const { authData, authError } = await Supabase().auth.admin.getUserById(userId)
+    const { data, error } = await Supabase().from("user_details")
+        .select("*")
+        .eq("id", userId)
 
-    if (authError) {
-        new Log(`get user error: `, authError).error()
-        return Response.error(authError.code)
+    if (error) {
+        new Log(`Error getting user with id ${userId}`, error).error();
+        return Response.error(error.code)
     }
-
-    // fetch account avatar
-    const {data: publicData, error: publicError} = await Supabase().from("users")
-        .select("avatar_id")
-        .eq("user_id", userId)
-
-    if (publicError) {
-        new Log(`get user avatar error: `, publicError).error()
-        return Response.error(publicError.code)
-    }
-
-    // Append avatar_id to users data
-    authData.user.avatar_id = publicData[0].avatar_id
-
-    return authData
+    return data
 }

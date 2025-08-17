@@ -19,7 +19,8 @@ export default function Masonry({columns = 2, pictures}) {
                                 {
                                     picture.display_name
                                         ? <div>
-                                            <Avatar userId={picture.owner}></Avatar>
+                                            {console.log(picture)}
+                                            <Avatar userId={picture.owner_id}></Avatar>
                                             <p>{picture.display_name}</p>
                                         </div>
                                         : <p>Anonym</p>
