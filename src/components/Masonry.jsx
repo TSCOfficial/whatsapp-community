@@ -15,7 +15,12 @@ export default function Masonry({columns = 2, pictures}) {
                         {column.map((picture, index) => (
                             <div key={index} className={styles.item}>
                                 <img src={picture.url} alt={picture.name} />
-                                <p>{picture.name}</p>
+                                {
+                                    picture.display_name
+                                    ? <p>{picture.display_name}</p>
+                                        : <p>Anonym</p>
+                                }
+
                             </div>
                         ))}
                     </div>
