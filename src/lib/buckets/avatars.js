@@ -10,8 +10,6 @@ export async function getAllAvatars() {
         new Log(`Error fetching avatars: `, error).error()
         return
     }
-
-    new Log(`Successfully fetchted avatars: `, data)
     return data;
 
 }
@@ -25,8 +23,6 @@ export async function getAvatarById(id) {
     new Log(`Error fetching avatar: 0 length index`).error()
     return
   }
-
-  new Log(`Successfully fetchted avatar: `, data)
   return data;
 }
 
@@ -37,8 +33,6 @@ export async function getAvatarUrl(name) {
       new Log(`Error fetching avatar URL: `, error).error()
       return
     }
-
-    new Log(`Successfully fetchted avatar URL: `, data)
     return data;
         
 }
