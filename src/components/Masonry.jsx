@@ -15,16 +15,17 @@ export default function Masonry({columns = 2, pictures}) {
                     <div key={colIndex} className={styles.column}>
                         {column.map((picture, index) => (
                             <div key={index} className={styles.item}>
-                                <img src={picture.url} alt={picture.name} />
-                                {
-                                    picture.display_name
-                                        ? <div>
-                                            {console.log(picture)}
-                                            <Avatar userId={picture.owner_id}></Avatar>
-                                            <p>{picture.display_name}</p>
-                                        </div>
-                                        : <p>Anonym</p>
-                                }
+                                <img src={picture.url} alt={picture.name} className={styles.image} />
+                                <div className={styles.user}>
+                                    {
+                                        picture.display_name
+                                            ? <>
+                                                <Avatar userId={picture.owner_id} className={styles.avatar}></Avatar>
+                                                <p>{picture.display_name}</p>
+                                            </>
+                                            : <p>Anonym</p>
+                                    }
+                                </div>
 
                             </div>
                         ))}

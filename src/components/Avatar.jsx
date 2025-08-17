@@ -13,7 +13,7 @@ import {getUserById} from "../lib/auth.js";
  * @returns {JSX.Element}
  * @constructor
  */
-export default function Avatar({userId, url, name, id}) {
+export default function Avatar({userId, url, name, id, props}) {
     const [avatarUrl, setAvatarUrl] = useState()
     const currentUser = useCurrentUser()
 
@@ -43,7 +43,7 @@ export default function Avatar({userId, url, name, id}) {
 
     return (
         avatarUrl
-        ? <img className={styles.avatar} src={avatarUrl} alt="" />
-        : <div className={styles.noAvatar}></div>
+        ? <img className={styles.avatar} src={avatarUrl} alt=""{...props}/>
+        : <div className={styles.noAvatar}{...props}></div>
     )
 }

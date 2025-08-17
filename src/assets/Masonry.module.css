@@ -22,10 +22,24 @@
     flex-direction: column;
 }
   
-.masonry img {
+.masonry .image {
     width: 100%;
     height: auto;
     display: block;
     border-radius: 8px;
     object-fit: cover;
+}
+
+.user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 16px;
+    padding: 4px 8px;
+}
+.user .avatar {
+    border-radius: 50%;
+    width: 24px;
 }
