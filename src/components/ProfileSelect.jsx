@@ -13,13 +13,12 @@ export default function ProfileSelect({preSelected}) {
             const profiles = await getAllAvatars()
 
             const profilesWithUrl = await Promise.all(
-                profiles.map(async (profile) => {
-                    const url = await getAvatarUrl(profile.name)
+                profiles.map((profile) => {
+                    const url = getAvatarUrl(profile.name)
                     return {
                         ...profile,
-                        url: url.publicUrl
+                        url: url
                     }
-                
                 })    
             )
 

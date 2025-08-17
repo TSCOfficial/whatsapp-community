@@ -12,14 +12,14 @@ export default function Avatar({url, name, id}) {
             if (url) {
                 setAvatarUrl(url)
             } else if (name) {
-                const avatar_url = await getAvatarUrl(name)
-                setAvatarUrl(avatar_url.publicUrl)
+                const avatar_url = getAvatarUrl(name)
+                setAvatarUrl(avatar_url)
             } else if (id) {
                 const avatar_url = await getAvatarUrlById(id)
-                setAvatarUrl(avatar_url.publicUrl)
+                setAvatarUrl(avatar_url)
             } else {
                 const avatar_url = await getAvatarUrlById(user.avatar_id)
-                setAvatarUrl(avatar_url.publicUrl)
+                setAvatarUrl(avatar_url)
             }
         }
         fetchAvatar()

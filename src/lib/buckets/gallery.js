@@ -1,5 +1,12 @@
 import Supabase from "../../../lib/supabase"
 import Log from "../../../lib/logging"
+import {useCurrentUser} from "../session.js";
+import {useEffect, useState} from "react";
+
+const supabaseId =
+    typeof window === 'undefined'
+        ? process.env.VITE_SUPABASE_ID
+        : import.meta.env.VITE_SUPABASE_ID; // allow vercel usage
 
 const BUCKET_NAME = "gallery"
 
@@ -32,15 +39,8 @@ export async function getPictureById(id) {
   return data;
 }
 
-export async function getPictureUrl(name) {
-    const {data, error} = await Supabase().storage.from(BUCKET_NAME).getPublicUrl(name)
-
-    if (error) {
-      new Log(`Error fetching picture URL: `, error).error()
-      return error
-    }
-    return data;
-        
+export function getPictureUrl(name) {
+    return `https://${supabaseId}.supabase.co/storage/v1/object/public/${BUCKET_NAME}/${name}`;
 }
 
 export async function getPictureUrlById(id) {
